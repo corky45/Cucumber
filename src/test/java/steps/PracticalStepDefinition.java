@@ -20,38 +20,30 @@ public class PracticalStepDefinition extends TestBase {
 	}
 
 	@Given("{string}  button exists")
-	public void button_exists(String string) {
-		driver.get("https://techfios.com/test/107/index.php");
-		switch (string) {
-		case "skyblue button":
-			loginPage.skyBlueButtonPresent();
-			break;
-		case "white button":
-			loginPage.whiteButtonPresent();
-			break;
-		}
+	public void button_exists(String button) {
+		loginPage.whiteButtonPresent();
+		loginPage.blueButtonPresent();
 	}
 
 	@When("I click on the {string} button")
 	public void i_click_on_the_color_button(String button) {
-		switch (button) {
-		case "Click on SkyBlue button":
-			loginPage.clickSkyBlueButton();
-			break;
-		case "Click on skywhite Button":
-			loginPage.clickWhiteButton();
-			break;
-		}
+		loginPage.clickSkyBlueButton();
+		loginPage.clickWhiteButton();
 	}
 
 	@Then("The background color will change to sky blue")
 	public void the_background_color_will_change() {
-		loginPage.takeScreenShot();
+		loginPage.verifySkyBlueBackgroundColor();
+	}
+
+
+	@Then("The background color will change to sky white")
+	public void the_background_color_will_change_to_white() {
+		loginPage.verifySkyWhiteBackgroundColor();
 	}
 
 	@After
-	public void tearDown() {
-		driver.close();
-		driver.quit();
+	public void tear() {
+		tearDown();
 	}
 }

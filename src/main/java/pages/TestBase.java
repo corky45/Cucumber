@@ -15,11 +15,16 @@ public class TestBase {
 	
 	public void initDriver() {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\clcra\\eclipse-workspace\\JUnitTest\\driver\\chromedriver.exe");
+				"C:\\Users\\clcra\\eclipse-workspace\\Cucumber\\driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().deleteAllCookies();
+		driver.get("https://techfios.com/test/107/index.php");
 		// driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	}
+	public void tearDown() {
+		driver.close();
+		driver.quit();
 	}
 	
 
